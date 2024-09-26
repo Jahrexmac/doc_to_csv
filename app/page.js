@@ -96,7 +96,7 @@ const Home = () => {
       }
 
       // Check for questions section
-      if (line.trim() === 'questions:') {
+      if (line.trim().toLowerCase() === 'questions:') {
         readingQuestions = true;
         return; // Skip to next line
       }
