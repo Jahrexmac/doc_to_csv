@@ -229,11 +229,11 @@ const Home = () => {
         </p>
         <pre className="bg-gray-100 p-4 rounded mb-4 overflow-x-auto">
           <code className="text-gray-800">
-            class: &lt;class_name&gt;<br />
-            subject: &lt;subject_name&gt;<br />
-            question group: &lt;group_number&gt;<br />
-            question level: &lt;level&gt;<br />
-            mark: &lt;mark_value&gt;
+            [class: &lt;class_name&gt;]<br />
+            [subject: &lt;subject_name&gt;]<br />
+            [question group: &lt;group_number&gt;]<br />
+            [question level: &lt;level&gt;]<br />
+            [mark: &lt;mark_value&gt;]
           </code>
         </pre>
         <h3 className="text-xl font-semibold text-gray-800 mb-2">2. Questions Section</h3>
@@ -266,11 +266,11 @@ const Home = () => {
         <h3 className="text-xl font-semibold text-gray-800 mb-2">Final Document Example</h3>
         <pre className="bg-gray-100 p-4 rounded mb-4 overflow-x-auto">
           <code className="text-gray-800">
-            class: kg1<br />
-            subject: General paper<br />
-            question group: 19<br />
-            question level: Medium<br />
-            mark: 2<br />
+            [class: kg1]<br />
+            [subject: General]<br />
+            [question group: 19]<br />
+            [question level: Medium]<br />
+            [mark: 2]<br />
             <br />
             questions:<br />
             1. Which animal is known as the king of the jungle? (Tiger, LION, Elephant, Bear)<br />
