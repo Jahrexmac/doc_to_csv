@@ -49,7 +49,11 @@ const Home = () => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       const paragraphs = Array.from(doc.querySelectorAll('p')); // Select all <p> tags
+      const orderedList = Array.from(doc.querySelectorAll('li')); // Select all <p> tags
       const textArray = paragraphs.map(p => p.innerText.trim()); // Store the text in an array
+      const orderArray =orderedList.map(l => l.innerText.trim())
+      textArray.push(...orderArray)
+      console.log(textArray)
       setExtractedText(textArray); // Set the extracted text to state
 
       const { questions, metadata } = extractQuestionsAndMetadata(textArray);
@@ -100,7 +104,7 @@ const Home = () => {
       // If we are reading questions, process the question lines
       if (readingQuestions) {
         if (line) {
-          const questionNumbered = line.match(/^\d+\.\s*(.+)\s*\((.*?)\)$/);
+          const questionNumbered = line.match(/^(?:\d+\.\s*)?(.+)\s*\((.*?)\)$/);
           if (questionNumbered) {
             const question = questionNumbered[1].trim();
             const optionsString = questionNumbered[2].trim();
@@ -125,7 +129,7 @@ const Home = () => {
                 type = 'multi_choice'
 
               } else if (answerIndices.length === 1) {
-                answer = 'option_' + answerIndices[0]
+                answer = 'option_' + (answerIndices[0] + 1)
                 type = 'single_choice'
               } else {
                 // No uppercase options found
@@ -189,6 +193,7 @@ const Home = () => {
       }
     });
     metadataList= metadata
+    
 
 
     return { questions, metadata };
