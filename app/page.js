@@ -53,7 +53,6 @@ const Home = () => {
       const textArray = paragraphs.map(p => p.innerText.trim()); // Store the text in an array
       const orderArray = orderedList.map(l => l.innerText.trim())
       textArray.push(...orderArray)
-      console.log(textArray)
       setExtractedText(textArray); // Set the extracted text to state
 
       const { questions, metadata } = extractQuestionsAndMetadata(textArray);
@@ -72,7 +71,6 @@ const Home = () => {
       setDownloadMessage('CSV file has been successfully downloaded!');
       setFile(null)
     } catch (error) {
-      console.error('Error processing the file:', error);
       setErrorMessage(`Error processing the file: ${error.message}`);
       setFile(null)
     }
@@ -200,7 +198,6 @@ const Home = () => {
   };
 
   const downloadCSV = (csv) => {
-    console.log(metadataList)
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -286,6 +283,16 @@ const Home = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6">
+          <div className="mt-6 text-center">
+            <a
+              href="/sampleDoc.docx"
+              download
+              className="inline-flex items-center px-4 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-200"
+            >
+              <InformationCircleIcon className="w-5 h-5 mr-2" />
+              Download Sample DOCX
+            </a>
+          </div>
           <label className="block mb-2 text-gray-700">
             Upload your Word Document:
           </label>
@@ -323,14 +330,6 @@ const Home = () => {
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <p className="text-sm">&copy; {new Date().getFullYear()} Developed by Jahrex (Rorobi Anthony)</p>
           <div className="flex space-x-4">
-            <a
-              href="https://github.com/Jahrexmac"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-400 flex items-center"
-            >
-              <FaGithub className="mr-1" /> GitHub
-            </a>
             <a
               href="https://www.linkedin.com/in/anthony-rorobi-22263b18b"
               target="_blank"
