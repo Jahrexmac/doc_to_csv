@@ -274,7 +274,8 @@ const Home = () => {
             3. Pick all that are wild animals? (_Lion, Dog, Hen, _Tiger)<br />
             4. ____ is the king of the jungle?(Lion)<br />
             5. what is 2 + 4 (_6,9,12,7)<br />
-            6. pick all even numbers (_2,_4,5,_6)
+            6. pick all even numbers (_2,_4,5,_6)<br />
+            7. Which of the following statements is correct? (The sun rises in the west, Birds can swim underwater, _Fish live in water, Trees can walk)
           </code>
         </pre>
         <p className="text-gray-700 mb-4">
