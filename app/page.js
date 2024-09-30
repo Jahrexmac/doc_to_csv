@@ -69,10 +69,10 @@ const Home = () => {
 
       // Set download message
       setDownloadMessage('CSV file has been successfully downloaded!');
-      setFile(null)
+      setFile('')
     } catch (error) {
       setErrorMessage(`Error processing the file: ${error.message}`);
-      setFile(null)
+      setFile('')
     }
   };
 
@@ -111,7 +111,7 @@ const Home = () => {
 
               // Array to store formatted option indices for uppercase options
               const answerIndices = options.reduce((accumulator, option, index) => {
-                if ((option === option.toUpperCase() && isNaN(option)) || option.startsWith('_')) {
+                if (option.startsWith('_')) {
                   accumulator.push(index); // Store just the index
                 }
                 return accumulator; // Return the updated array
@@ -139,17 +139,17 @@ const Home = () => {
                 metadata[3],
                 question,
                 +metadata[4] || 1,
-                toTitleCase(options[0]).replace(/^_/, '') || '',
-                toTitleCase(options[1]).replace(/^_/, '') || '',
-                toTitleCase(options[2]).replace(/^_/, '') || '',
-                toTitleCase(options[3]).replace(/^_/, '') || '',
+                toTitleCase(options[0].replace(/^_/, '')) || '',
+                toTitleCase(options[1].replace(/^_/, '')) || '',
+                toTitleCase(options[2].replace(/^_/, '')) || '',
+                toTitleCase(options[3].replace(/^_/, '')) || '',
                 answer,
               ]);
 
             } else if (options.length === 2) {
 
               const answer = options.reduce((accumulator, option, index) => {
-                if (option === option.toUpperCase()) {
+                if (option.startsWith('_')) {
                   accumulator.push(index); // Store just the index
                 }
                 return accumulator
@@ -164,7 +164,7 @@ const Home = () => {
                 '',
                 '',
                 '',
-                options[answer[0]],
+                toTitleCase(options[answer[0]].replace(/^_/, '')),
               ]);
 
             } else if (options.length === 1) {
@@ -179,7 +179,7 @@ const Home = () => {
                 '',
                 '',
                 '',
-                options[0],
+                toTitleCase(options[0]),
               ]);
 
             }
@@ -246,15 +246,14 @@ const Home = () => {
         <p className="text-gray-700 mb-4">
           - Each question should be on a new line.<br />
           - Use parentheses to specify the answer options.<br />
-          - Correct answers must be in uppercase letters. <br />
-          - if answer is a number or any answer that can't be capitalized, it should start with an underscore
+          - Correct answers must start with an underscore. <br />
         </p>
         <h4 className="text-lg font-semibold text-gray-800 mb-2">Question Types:</h4>
         <ul className="list-disc list-inside text-gray-700 mb-4">
-          <li><strong>Single Choice:</strong> <code>Question text? (option_1, option_2, OPTION_3, option_4)</code></li>
-          <li><strong>Multiple Choice:</strong> <code>Question text? (OPTION_1, option_2, OPTION_3, option_4)</code></li>
-          <li><strong>True/False:</strong> <code>Question text? (true, FALSE)</code></li>
-          <li><strong>Descriptive:</strong> <code>Question text?</code></li>
+          <li><strong>Single Choice:</strong> <code>Question text? (option_1, option_2, _option_3, option_4)</code></li>
+          <li><strong>Multiple Choice:</strong> <code>Question text? (_option_1, option_2, _option_3, option_4)</code></li>
+          <li><strong>True/False:</strong> <code>Question text? (True, _False)</code></li>
+          <li><strong>Descriptive:</strong> <code>Question text? (answer)</code></li>
         </ul>
         <h3 className="text-xl font-semibold text-gray-800 mb-2">4. File Format</h3>
         <p className="text-gray-700 mb-4">
@@ -270,10 +269,10 @@ const Home = () => {
             [mark: 2]<br />
             <br />
             questions:<br />
-            1. Which animal is known as the king of the jungle? (Tiger, LION, Elephant, Bear)<br />
-            2. stealing is good? (true, FALSE)<br />
-            3. Pick all that are wild animals? (LION, dog, hen, TIGER)<br />
-            4. ____ is the king of the jungle?(lion)<br />
+            1. Which animal is known as the king of the jungle? (Tiger, _Lion, Elephant, Bear)<br />
+            2. stealing is good? (True, _False)<br />
+            3. Pick all that are wild animals? (_Lion, Dog, Hen, _Tiger)<br />
+            4. ____ is the king of the jungle?(Lion)<br />
             5. what is 2 + 4 (_6,9,12,7)<br />
             6. pick all even numbers (_2,_4,5,_6)
           </code>
